@@ -1,0 +1,11 @@
+<b>Title:</b> {{ ekg.title }} <br />
+<b>Frequency:</b> {{ ekg.frequency }} <br />
+
+<b>Pulses:</b> 
+{% for pulse in pulses %}
+    {{ pulse }}
+{% endfor %}
+
+<br />
+<a href="{{ ekg.get_absolute_url }}"><b>URL</b></a> <br />
+

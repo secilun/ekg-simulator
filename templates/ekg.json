@@ -1,0 +1,1 @@
+{pulses: {% for pulse in pulses %}{{ pulse }}{% if pulse.last %}{{ else }},{% endif %}{% endfor %} }
