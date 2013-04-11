@@ -6,15 +6,26 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Time', 'Pulse'],
+          ['Time', 'Beats'],
         {% for pulse in pulses %}
-          ['{{ pulse.id }}',  {{ pulse }}],
-        {% endfor %}
-          ['20',  0]
+          ['{{ forloop.counter }}',  {{ pulse }}]{% if forloop.last %}{% else %},{% endif %}{% endfor %}
         ]);
 
         var options = {
-          title: 'EKG Simulation'
+          title: 'EKG Simulation',
+          pointSize: 5,
+          width: 600, height: 300,
+          curveType: 'function',
+
+          vAxis: {minorGridlines: {color: '#DCDCDC', count: 5}},
+//          hAxis: {minorGridlines: {color: '#DCDCDC', count: 5}}, // ***
+
+          vAxes:[
+            {title:'beat/s',textStyle:{color: 'blue'}} // Axis 0
+          ],
+          hAxes:[
+            {title:'time',textStyle:{color: 'blue'}} // Axis 0
+          ],
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
@@ -23,10 +34,10 @@
     </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div" style="width: 1200px; height: 300px;"></div>
 
+<hr />
 <b>Title:</b> {{ ekg.title }} <br />
-<b>Frequency:</b> {{ ekg.frequency }} <br />
 
 <br />
 <a href="{{ ekg.get_absolute_url }}"><b>URL</b></a> <br />
