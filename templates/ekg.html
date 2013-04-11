@@ -1,11 +1,40 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Time', 'Pulse'],
+        {% for pulse in pulses %}
+          ['{{ pulse.id }}',  {{ pulse }}],
+        {% endfor %}
+          ['20',  0]
+        ]);
+
+        var options = {
+          title: 'EKG Simulation'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
 <b>Title:</b> {{ ekg.title }} <br />
 <b>Frequency:</b> {{ ekg.frequency }} <br />
 
-<b>Pulses:</b> 
-{% for pulse in pulses %}
-    {{ pulse }}
-{% endfor %}
-
 <br />
 <a href="{{ ekg.get_absolute_url }}"><b>URL</b></a> <br />
+
+    {% for pulse in pulses %}
+        {{ pulse }}
+    {% endfor %}
+
+  </body>
+</html>
 
