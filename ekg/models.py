@@ -9,7 +9,7 @@ class EKG(models.Model):
     frequency = models.IntegerField(_('frequency'))
     pulse = models.CharField(_('pulse'), max_length=250)
     pulse_generated = models.BooleanField(editable=False)
-    last_sent = models.IntegerField(default=0)
+    last_sent = models.IntegerField(default=0, editable=False)
 
     created_date = models.DateTimeField(auto_now_add=True)
 
