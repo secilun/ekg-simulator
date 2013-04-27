@@ -6,8 +6,16 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 class EKG(models.Model):
     title = models.CharField(_('title'), max_length=100)
-    frequency = models.IntegerField(_('frequency'))
-    pulse = models.CharField(_('pulse'), max_length=250)
+
+    pulse1 = models.CharField(_('height 1'), max_length=250)
+    ptype1 = models.CharField(_('pytpe 1'), max_length=250)
+
+    pulse2 = models.CharField(_('height 2'), max_length=250)
+    ptype2 = models.CharField(_('pytpe 2'), max_length=250)
+
+    pulse3 = models.CharField(_('height 3'), max_length=250)
+    ptype3 = models.CharField(_('pytpe 3'), max_length=250)
+
     pulse_generated = models.BooleanField(editable=False)
     last_sent = models.IntegerField(default=0, editable=False)
 

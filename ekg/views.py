@@ -14,7 +14,7 @@ def ekg(request, ekg_id, outputtype):
         ekg.pulse_generated = True
         ekg.save()
 
-    pulses = Pulse.objects.filter(ekg=ekg)
+    pulses = Pulse.objects.filter(ekg=ekg).order_by("id")
     if outputtype == 'json':
         return render_to_response('ekg.json', {"ekg": ekg, "pulses":pulses},
                                   mimetype='application/json')
@@ -34,7 +34,7 @@ def instant(request, ekg_id, outputtype):
         ekg.pulse_generated = True
         ekg.save()
 
-    available_pulses = Pulse.objects.filter(ekg=ekg)
+    available_pulses = Pulse.objects.filter(ekg=ekg).order_by("id")
     number_of_pulses = len(available_pulses)
 
     if ekg.last_sent == (number_of_pulses-1):

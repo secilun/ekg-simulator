@@ -8,16 +8,16 @@
         var data = google.visualization.arrayToDataTable([
           ['Time', 'Beats'],
         {% for pulse in pulses %}
-          ['{{ forloop.counter }}',  {{ pulse }}]{% if forloop.last %}{% else %},{% endif %}{% endfor %}
+          ['{{ forloop.counter0 }}',  {{ pulse.pulse1 }}]{% if forloop.last %}{% else %},{% endif %}{% endfor %}
         ]);
 
         var options = {
-          title: 'EKG Simulation',
-          pointSize: 5,
-          width: 600, height: 300,
+          title: 'aVR',
+          pointSize: 1,
+          width: 700, height: 300,
           curveType: 'function',
 
-          vAxis: {minorGridlines: {color: '#DCDCDC', count: 5}},
+//          vAxis: {minorGridlines: {color: '#DCDCDC', count: 5}},
 //          hAxis: {minorGridlines: {color: '#DCDCDC', count: 5}}, // ***
 
           vAxes:[
@@ -28,23 +28,89 @@
           ],
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.LineChart(document.getElementById('chart1_div'));
         chart.draw(data, options);
       }
     </script>
+
+    <script type="text/javascript">
+// Second Chart
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Time', 'Beats'],
+        {% for pulse in pulses %}
+          ['{{ forloop.counter0 }}',  {{ pulse.pulse2 }}]{% if forloop.last %}{% else %},{% endif %}{% endfor %}
+        ]);
+
+        var options = {
+          title: 'aVL',
+          pointSize: 1,
+          width: 700, height: 300,
+          curveType: 'function',
+
+//          vAxis: {minorGridlines: {color: '#DCDCDC', count: 5}},
+//          hAxis: {minorGridlines: {color: '#DCDCDC', count: 5}}, // ***
+
+          vAxes:[
+            {title:'beat/s',textStyle:{color: 'blue'}} // Axis 0
+          ],
+          hAxes:[
+            {title:'time',textStyle:{color: 'blue'}} // Axis 0
+          ],
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart2_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+    <script type="text/javascript">
+// Third Chart
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Time', 'Beats'],
+        {% for pulse in pulses %}
+          ['{{ forloop.counter0 }}',  {{ pulse.pulse3 }}]{% if forloop.last %}{% else %},{% endif %}{% endfor %}
+        ]);
+
+        var options = {
+          title: 'aVF',
+          pointSize: 1,
+          width: 700, height: 300,
+          curveType: 'function',
+
+//          vAxis: {minorGridlines: {color: '#DCDCDC', count: 5}},
+//          hAxis: {minorGridlines: {color: '#DCDCDC', count: 5}}, // ***
+
+          vAxes:[
+            {title:'beat/s',textStyle:{color: 'blue'}} // Axis 0
+          ],
+          hAxes:[
+            {title:'time',textStyle:{color: 'blue'}} // Axis 0
+          ],
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart3_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
   </head>
   <body>
-    <div id="chart_div" style="width: 1200px; height: 300px;"></div>
+    <div id="chart1_div" style="width: 1200px; height: 300px;"></div>
+    <div id="chart2_div" style="width: 1200px; height: 300px;"></div>
+    <div id="chart3_div" style="width: 1200px; height: 300px;"></div>
 
 <hr />
 <b>Title:</b> {{ ekg.title }} <br />
 
 <br />
 <a href="{{ ekg.get_absolute_url }}"><b>URL</b></a> <br />
-
-    {% for pulse in pulses %}
-        {{ pulse }}
-    {% endfor %}
 
   </body>
 </html>

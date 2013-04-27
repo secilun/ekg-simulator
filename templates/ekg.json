@@ -1,1 +1,3 @@
-{pulses: {% for pulse in pulses %}{{ pulse }}{% if pulse.last %}{{ else }},{% endif %}{% endfor %} }
+{pulses1: {% for pulse in pulses %}{{ pulse.pulse1 }} {% if pulse.last %}{{ else }},{% endif %}{% endfor %} }
+{pulses2: {% for pulse in pulses %}{{ pulse.pulse2 }} {% if pulse.last %}{{ else }},{% endif %}{% endfor %} }
+{pulses3: {% for pulse in pulses %}{{ pulse.pulse3 }} {% if pulse.last %}{{ else }},{% endif %}{% endfor %} }
