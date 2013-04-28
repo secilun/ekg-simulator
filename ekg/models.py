@@ -7,14 +7,14 @@ from django.utils.translation import ugettext_lazy as _
 class EKG(models.Model):
     title = models.CharField(_('title'), max_length=100)
 
-    pulse1 = models.CharField(_('height 1'), max_length=250)
-    ptype1 = models.CharField(_('pytpe 1'), max_length=250)
+    pulse1 = models.TextField(_('height 1'))
+    ptype1 = models.TextField(_('pytpe 1'))
 
-    pulse2 = models.CharField(_('height 2'), max_length=250)
-    ptype2 = models.CharField(_('pytpe 2'), max_length=250)
+    pulse2 = models.TextField(_('height 2'))
+    ptype2 = models.TextField(_('pytpe 2'))
 
-    pulse3 = models.CharField(_('height 3'), max_length=250)
-    ptype3 = models.CharField(_('pytpe 3'), max_length=250)
+    pulse3 = models.TextField(_('height 3'))
+    ptype3 = models.TextField(_('pytpe 3'))
 
     pulse_generated = models.BooleanField(editable=False)
     last_sent = models.IntegerField(default=0, editable=False)
