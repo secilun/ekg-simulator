@@ -22,7 +22,7 @@ class EKG(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return "%s" % (self.id)
+        return "%s" % (self.title)
 
     def get_absolute_url(self):
         return "/ekg/%s/plain/" % (self.id)
@@ -35,3 +35,16 @@ class EKG(models.Model):
     class Meta:
         verbose_name = _('EKG')
         verbose_name_plural = _('EKGs')
+
+
+class SelectedEKG(models.Model):
+    ekg = models.ForeignKey(EKG, verbose_name=_('ekg'))
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "%s" % (self.ekg.title)
+
+ 
+    class Meta:
+        verbose_name = _('Selected EKG')
+        verbose_name_plural = _('Selected EKGs')

@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     url(r'^ekg/(?P<ekg_id>\d+)/(?P<outputtype>[-A-Za-z0-9_]+)/$',
         'ekg.views.ekg', name='ekg'),
 
+    url(r'^select/(?P<outputtype>[-A-Za-z0-9_]+)/$',
+        'ekg.views.selected', name='selected-ekg'),
+
     url(r'^instant/(?P<ekg_id>\d+)/(?P<outputtype>[-A-Za-z0-9_]+)/$',
         'ekg.views.instant', name='instant'),
 
